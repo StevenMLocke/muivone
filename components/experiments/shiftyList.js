@@ -1,4 +1,4 @@
-import { Card, Stack } from "@mui/material";
+import { Button, ButtonGroup, Card, Stack, Typography } from "@mui/material";
 import { Box, Container } from "@mui/system";
 import shuffle from "lodash/shuffle";
 import { useState } from "react";
@@ -36,7 +36,27 @@ const ShiftyList = ({ randos }) => {
 									spring={'gentle'}
 									stagger={true}
 									>
-									<Card raised sx={{p:1}}>Name: {item.name} - ID: {item.id} - Rank: {i + 1}</Card>
+									<Card raised sx={{p:1}}>
+										Name: {item.name} - ID: {item.id} - 
+										<ButtonGroup
+											variant="contained"
+											size="small"
+											color="primary"
+											sx={{float:'right'}}
+										>
+											<Button>Up</Button>
+											<Button>Down</Button>
+										</ButtonGroup>
+										<Typography
+											variant="h6"
+											sx={{
+												marginRight:'1rem',
+												float:'right'
+											}}
+										>
+										Rank: {i + 1}
+										</Typography>
+									</Card>
 								</Flipped>
 							)
 						})}
