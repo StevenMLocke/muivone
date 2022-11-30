@@ -121,8 +121,7 @@ const Home = (props) => {
 					</Grid2>
 					<Grid2 xs={4} display="flex" justifyContent="center" alignItems="center">
 						<Card
-							variant="elevation"
-							raised={true}
+							raised
 							sx={{
 								p: 1,
 								m: 1,
@@ -138,7 +137,7 @@ const Home = (props) => {
 					</Grid2>
 					<Grid2 xs={4} display="flex" justifyContent="center" alignItems="center">
 						<Card
-							raised={true}
+							raised
 							sx={{
 								p: 1,
 								m: 1,
@@ -154,7 +153,7 @@ const Home = (props) => {
 					</Grid2>
 					<Grid2 xs={4} display="flex" justifyContent="center" alignItems="center">
 						<Card
-							raised={true}
+							raised
 							sx={{
 								p: 1,
 								m: 1,
