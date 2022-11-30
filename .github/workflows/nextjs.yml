@@ -71,7 +71,7 @@ jobs:
         uses: actions/upload-artifact@v3.1.1
         with:
           # A file, directory or wildcard pattern that describes what to upload
-          path: ./out
+          path: ./
 
   # Deployment job
   deploy:
