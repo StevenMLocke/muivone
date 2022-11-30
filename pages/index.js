@@ -10,7 +10,7 @@ import { Typography } from "@mui/material";
 import Box from "@mui/system/Box";
 import ShiftyList from "../components/experiments/shiftyList";
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
 	const res = await fetch('https://gorest.co.in/public/v2/users');
 	const data = await res.json();
 	return {
