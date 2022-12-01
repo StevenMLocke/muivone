@@ -9,24 +9,25 @@ import { flexbox } from "@mui/system";
 import { Typography } from "@mui/material";
 import Box from "@mui/system/Box";
 import ShiftyList from "../components/experiments/shiftyList";
+import useSWR from 'swr';
+import ATable from "./tableExp";
 
-export const getStaticProps = async () => {
-	const res = await fetch('https://gorest.co.in/public/v2/users');
-	const data = await res.json();
-	return {
-		props: {
-			randomData: data
-		}
-	}
-}
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const Home = (props) => {
+	const { data, error } = useSWR('https://gorest.co.in/public/v2/users', fetcher)
+
+	if (error) return <div>Failed to load</div>
+	if (!data) return <div>Loading...</div>
+
 	return <>
 		<Head>
 			<meta name="viewport" content="initial-scale=1, width=device-width" />
 		</Head>
 		<Main>
-			<ShiftyList randos={props.randomData}></ShiftyList>
+			<ATable props={data}></ATable>
+			<Divider variant="middle"></Divider>
+			<ShiftyList randos={data}></ShiftyList>
 			<Divider variant="middle"></Divider>
 			<Button variant="outlined">Hello World!</Button>
 			<Divider></Divider>

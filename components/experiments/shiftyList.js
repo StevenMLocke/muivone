@@ -39,7 +39,7 @@ const ShiftyList = ({ randos }) => {
 			}}>
 				<Flipper flipKey={data}>
 					<Grid2 xs container>
-						<Box sx={{m:'auto'}}>
+						<Box sx={{ m: 'auto' }}>
 							<Button variant="contained" onClick={shuffleList}>Shuffle</Button>
 						</Box>
 					</Grid2>
@@ -54,14 +54,15 @@ const ShiftyList = ({ randos }) => {
 											spring={'wobbly'}
 											stagger={true}
 										>
-											<Card display='flex' raised sx={{ pl:2, pr:2, pt:1, pb:1 }} >
-												<Grid2 xs container>
+											<Card display='flex' raised sx={{ pl: 2, pr: 2, pt: 1, pb: 1 }} >
+												<Grid2 xs container sx={{ml:1, mr :1}}>
 													<Grid2 xs={6}>
 														<Stack>
 															<Box>
-																<Typography
-																	variant="h6"
-																	sx={{ display: 'inline-flex' }}
+																<Typography sx={{
+																	display: 'inline-flex',
+																	fontWeight: 'bold'
+																}}
 																>
 																	Name:
 																</Typography>
@@ -74,9 +75,10 @@ const ShiftyList = ({ randos }) => {
 															</Box>
 															<Divider variant="middle"></Divider>
 															<Box>
-																<Typography
-																	variant="h6"
-																	sx={{ display: 'inline-flex' }}
+																<Typography sx={{
+																	display: 'inline-flex',
+																	fontWeight: 'bold'
+																}}
 																>
 																	ID:
 																</Typography>
@@ -89,31 +91,49 @@ const ShiftyList = ({ randos }) => {
 															</Box>
 														</Stack>
 													</Grid2>
-													<Grid2 xs={6} sx={{m:'auto'}}>
-														<Box>
-															<ButtonGroup
-																variant="contained"
-																size="medium"
-																color="primary"
-																sx={{ float: 'right' }}
-															>
-																<Button id='up' ind={i} onClick={arrowClickHandler}>
-																	<ArrowUpwardIcon />
-																</Button>
-																<Button id='down' ind={i} onClick={arrowClickHandler}>
-																	<ArrowDownward />
-																</Button>
-															</ButtonGroup>
-															<Typography
-																variant="h6"
-																sx={{
-																	marginRight: '1rem',
-																	float: 'right'
-																}}
-															>
-																Rank: {i + 1}
-															</Typography>
-														</Box>
+													<Grid2 xs={6} container sx={{
+														m: 'auto',
+														display: 'inline-flex',
+														justifyContent: 'flex-end'
+													}}>
+														<Divider
+															flexItem
+															orientation="vertical"
+															variant="middle"
+															sx={{
+																mr:'1rem'
+															}}
+														></Divider>
+														<Typography sx={{
+															marginRight: '1rem',
+															mt: 'auto',
+															mb: 'auto',
+															float: 'right',
+															fontWeight: 'bold'
+														}}
+														>
+															Rank: {i + 1}
+														</Typography>
+														<Divider
+															flexItem
+															orientation="vertical"
+															variant="middle"
+															sx={{
+																mr:'1rem'
+															}}
+														></Divider>
+														<ButtonGroup
+															variant="contained"
+															size="medium"
+															color="primary"
+														>
+															<Button id='up' ind={i} onClick={arrowClickHandler}>
+																<ArrowUpwardIcon />
+															</Button>
+															<Button id='down' ind={i} onClick={arrowClickHandler}>
+																<ArrowDownward />
+															</Button>
+														</ButtonGroup>
 													</Grid2>
 												</Grid2>
 											</Card>
