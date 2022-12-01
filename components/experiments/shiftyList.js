@@ -38,7 +38,11 @@ const ShiftyList = ({ randos }) => {
 				outline: '2px dashed blue'
 			}}>
 				<Flipper flipKey={data}>
-					<button onClick={shuffleList}>Shuffle</button>
+					<Grid2 xs container>
+						<Box sx={{m:'auto'}}>
+							<Button variant="contained" onClick={shuffleList}>Shuffle</Button>
+						</Box>
+					</Grid2>
 					<Typography>
 						<Stack spacing={1} sx={{ padding: '1rem' }}>
 							{
@@ -50,7 +54,7 @@ const ShiftyList = ({ randos }) => {
 											spring={'wobbly'}
 											stagger={true}
 										>
-											<Card display='flex' raised sx={{ p: 1 }} >
+											<Card display='flex' raised sx={{ pl:2, pr:2, pt:1, pb:1 }} >
 												<Grid2 xs container>
 													<Grid2 xs={6}>
 														<Stack>
@@ -68,6 +72,7 @@ const ShiftyList = ({ randos }) => {
 																>{item.name}
 																</Typography>
 															</Box>
+															<Divider variant="middle"></Divider>
 															<Box>
 																<Typography
 																	variant="h6"
@@ -88,7 +93,7 @@ const ShiftyList = ({ randos }) => {
 														<Box>
 															<ButtonGroup
 																variant="contained"
-																size="small"
+																size="medium"
 																color="primary"
 																sx={{ float: 'right' }}
 															>
