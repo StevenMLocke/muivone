@@ -1,11 +1,10 @@
-import { Button, ButtonGroup, Card, Stack, Typography } from "@mui/material";
+import { Button, ButtonGroup, Card, Divider, Stack, Typography } from "@mui/material";
 import { Box, Container } from "@mui/system";
 import shuffle from "lodash/shuffle";
 import { useState } from "react";
 import { Flipped, Flipper } from "react-flip-toolkit";
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpwardRounded';
 import { ArrowDownward } from "@mui/icons-material";
-import { set } from "lodash";
 
 const ShiftyList = ({ randos }) => {
 	const [data, setData] = useState(randos)
@@ -15,7 +14,7 @@ const ShiftyList = ({ randos }) => {
 	}
 
 	const arrowClickHandler = (event) => {
-		const ind = parseInt(event.currentTarget.parentNode.parentNode.getAttribute('ind'))
+		const ind = parseInt(event.currentTarget.getAttribute('ind'))
 		const direction = event.currentTarget.id;
 
 		let tempArr = [...data];
@@ -25,7 +24,6 @@ const ShiftyList = ({ randos }) => {
 			tempArr.splice(ind - 1, 0, pulled)
 		} else if (ind < tempArr.length - 1 && direction === 'down') {
 			const pulled = tempArr.splice(ind, 1)[0]
-			console.log(ind + 1)
 			tempArr.splice((ind + 1), 0, pulled)
 		}
 
@@ -50,18 +48,29 @@ const ShiftyList = ({ randos }) => {
 										spring={'wobbly'}
 										stagger={true}
 									>
-										<Card raised sx={{ p: 1 }} ind={i}>
-											Name: {item.name} - ID: {item.id}
+										<Card display='flex' raised sx={{ p: 1 }} >
+											<Typography sx={{
+												fontWeight: 'bold',
+												display: 'inline-flex'
+											}}
+											>Name: </Typography>
+											<Typography sx={{ display: 'inline-flex' }}>{item.name}</Typography>
+											<Typography sx={{
+												fontWeight: 'bold',
+												display: 'inline-flex'
+											}}
+											>ID: </Typography>
+											<Typography sx={{ display: 'inline-flex' }}>{item.id}</Typography>
 											<ButtonGroup
 												variant="contained"
 												size="small"
 												color="primary"
 												sx={{ float: 'right' }}
 											>
-												<Button id='up' onClick={arrowClickHandler}>
+												<Button id='up' ind={i} onClick={arrowClickHandler}>
 													<ArrowUpwardIcon />
 												</Button>
-												<Button id='down' onClick={arrowClickHandler}>
+												<Button id='down' ind={i} onClick={arrowClickHandler}>
 													<ArrowDownward />
 												</Button>
 											</ButtonGroup>

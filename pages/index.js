@@ -23,10 +23,6 @@ export const getStaticProps = async () => {
 const Home = (props) => {
 	return <>
 		<Head>
-			<link
-				rel="stylesheet"
-				href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-			/>
 			<meta name="viewport" content="initial-scale=1, width=device-width" />
 		</Head>
 		<Main>
@@ -43,70 +39,70 @@ const Home = (props) => {
 			<Container style={{ marginTop: '1rem' }}>
 				<Grid2 container spacing={4}>
 					<Grid2 xs={3} justifyContent="center" alignItems="center">
-						<Card raised={true} style={{ minHeight: '100px', textAlign: 'center' }} className={flexbox}>
+						<Card raised sx={{ minHeight: '100px', textAlign: 'center' }} >
 							<Typography>
 								a thing
 							</Typography>
 						</Card>
 					</Grid2>
 					<Grid2 xs={3} justifyContent="center" alignItems="center">
-						<Card raised={true} style={{ minHeight: '100px', textAlign: 'center' }} className={flexbox}>
+						<Card raised sx={{ minHeight: '100px', textAlign: 'center' }} >
 							Another thing
 						</Card>
 					</Grid2>
 					<Grid2 xs={3} justifyContent="center" alignItems="center">
-						<Card raised={true} style={{ minHeight: '100px', textAlign: 'center' }} className={flexbox}>
+						<Card raised sx={{ minHeight: '100px', textAlign: 'center' }} >
 							a third thing
 						</Card>
 					</Grid2>
 					<Grid2 xs={3} justifyContent="center" alignItems="center">
-						<Card raised={true} style={{ minHeight: '100px', textAlign: 'center' }} className={flexbox}>
+						<Card raised sx={{ minHeight: '100px', textAlign: 'center' }} >
 							The last thing
 						</Card>
 					</Grid2>
 
 					<Grid2 item xs={3} style={{ outline: 'solid blue' }}>
-						<Card raised={true} style={{ minHeight: '100px', textAlign: 'center' }} className={flexbox}>
+						<Card raised sx={{ minHeight: '100px', textAlign: 'center' }} >
 							<Typography>
 								a thing
 							</Typography>
 						</Card>
 					</Grid2>
 					<Grid2 item xs={3} style={{ outline: 'solid red' }}>
-						<Card raised={true} style={{ minHeight: '100px', textAlign: 'center' }} className={flexbox}>
+						<Card raised sx={{ minHeight: '100px', textAlign: 'center' }} >
 							Another thing
 						</Card>
 					</Grid2>
 					<Grid2 item xs={3} style={{ outline: 'solid yellow' }}>
-						<Card raised={true} style={{ minHeight: '100px', textAlign: 'center' }} className={flexbox}>
+						<Card raised sx={{ minHeight: '100px', textAlign: 'center' }} >
 							a third thing
 						</Card>
 					</Grid2>
 					<Grid2 item xs={3} style={{ outline: 'solid purple' }}>
-						<Card raised={true} style={{ minHeight: '100px', textAlign: 'center' }} className={flexbox}>
+						<Card raised sx={{ minHeight: '100px', textAlign: 'center' }} >
 							The last thing
 						</Card>
 					</Grid2>
 
 					<Grid2 item xs={3} style={{ outline: 'solid blue' }}>
-						<Card raised={true} style={{ minHeight: '100px', textAlign: 'center' }} className={flexbox}>
+						<Card raised sx={{ minHeight: '100px', textAlign: 'center' }} >
 							<Typography>
 								a thing
 							</Typography>
 						</Card>
 					</Grid2>
 					<Grid2 item xs={3} style={{ outline: 'solid red' }}>
-						<Card raised={true} style={{ minHeight: '100px', textAlign: 'center' }} className={flexbox}>
+						<Card raised sx={{ minHeight: '100px', textAlign: 'center' }} >
 							Another thing
 						</Card>
 					</Grid2>
 					<Grid2 item xs={3} style={{ outline: 'solid yellow' }}>
-						<Card raised={true} style={{ minHeight: '100px', textAlign: 'center' }} className={flexbox}>
+						<Card raised sx={{ minHeight: '100px', textAlign: 'center' }} >
 							a third thing
 						</Card>
 					</Grid2>
 					<Grid2 item xs={3} style={{ outline: 'solid purple' }}>
-						<Card raised={true} style={{ minHeight: '100px', textAlign: 'center' }} className={flexbox}>
+						<Card raised sx={{ minHeight: '100px', textAlign: 'center' }} >
 							The last thing
 						</Card>
 					</Grid2>
@@ -115,7 +111,7 @@ const Home = (props) => {
 			<Divider variant={'middle'}></Divider>
 			<Container style={{ outline: 'solid chartreuse', padding: '1rem' }}>
 				<Divider variant={'middle'}></Divider>
-				<Grid2 container>
+				<Grid2 xs display="flex" container>
 					<Grid2 xs display="flex" justifyContent="center" alignItems="center">
 						<Divider orientation="vertical" flexItem variant="middle" />
 					</Grid2>

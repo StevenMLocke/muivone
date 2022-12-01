@@ -7,7 +7,6 @@ const Main = ({ children }) => {
 	return (
 		<>
 			<Header title = "Any title will do"></Header>
-			<SideBar></SideBar>
 			<Contents>
 				<Stack spacing={2} >
 					{children}
