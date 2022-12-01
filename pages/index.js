@@ -10,7 +10,7 @@ import { Typography } from "@mui/material";
 import Box from "@mui/system/Box";
 import ShiftyList from "../components/experiments/shiftyList";
 import useSWR from 'swr';
-import ATable from "./tableExp";
+import ATable from "../components/experiments/tableExp";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
