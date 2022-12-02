@@ -1,29 +1,30 @@
-import useSWR from "swr";
+import getSpotifyArtist from "../../lib/getSpotifyArtist";
+import getSpotifyAlbumIds from "../../lib/getSpotifyAlbumIds";
+import spotAuth from "../../lib/spotAuth";
+import getSpotifyAlbums from "../../lib/getSpotifyAlbums";
 
 export async function getServerSideProps({ query }) {
-	const fetcher = (...args) => { fetch(...args).then((res) => res.json()) };
-	
-	const authString = Buffer.from(process.env.SPOTIFY_CLIENT_ID + ':' + process.env.SPOTIFY_CLIENT_SECRET).toString('base64url');
-	const url = 'https://accounts.spotify.com/api/token';
-	const options = {
-		'headers': {
-			'Authorization' : 'Basic ' + authString
-		}
-	}
+	const client_id = process.env.SPOTIFY_CLIENT_ID;
+	const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
 
-	const [data, err] = useSWR([url, options], fetcher);
+	const token = await spotAuth(client_id, client_secret);
+	const artistObj = await getSpotifyArtist(query.name, token);
+	const albumsIds = await getSpotifyAlbumIds(artistObj.id, token);
+	const albumsQueryString = albumsIds.albumIdsArr.join(',');
+
+	artistObj.albums = await getSpotifyAlbums(albumsQueryString, token);
 
 	return {
 		props: {
 			query,
-			data
+			artistObj,
+			albumsQueryString
 		}
 	}
 }
 
-const Band = ({ query, data }) => { 
-	console.log({ query });
-	console.log(data);
+const Band = (props) => {
+	console.log(props)
 	return (
 		<>
 			check the console!
