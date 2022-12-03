@@ -59,15 +59,11 @@ const TracksTable = ({ tracks }) => {
 					<TableBody>
 						{data.map((track, i) =>
 							<Flipped flipId={track.id} key={i}>
-								<TableRow>
-									<TableCell 
-										key={i + track.name}
-									>
+								<TableRow key={track.id}>
+									<TableCell >
 										{track.name}
 									</TableCell>
-									<TableCell
-										key={i + track.album + track.name}
-									>
+									<TableCell>
 										{track.album}
 									</TableCell>
 									<TableCell
@@ -77,7 +73,6 @@ const TracksTable = ({ tracks }) => {
 										{i + 1}
 									</TableCell>
 									<TableCell
-										key={i + 'sort'}
 										align='center'
 									>
 										<ButtonGroup

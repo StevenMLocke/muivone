@@ -45,6 +45,8 @@ const Band = (props) => {
 		}
 	})
 
+	console.log(tracks);
+
 	return (
 		<Contents>
 			Check Console...
