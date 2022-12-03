@@ -1,7 +1,8 @@
 const getSpotifyAlbums = async (albumIdsQueryString, token) => { 
 	const url = 'https://api.spotify.com/v1/albums?';
 	const params = new URLSearchParams({
-		'ids' : albumIdsQueryString
+		'ids' : albumIdsQueryString,
+		'market' : 'US'
 	})
 	const headers = {
 		'Authorization' : 'Bearer ' + token.access_token

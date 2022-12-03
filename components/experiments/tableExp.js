@@ -1,6 +1,4 @@
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
-import Card from "@mui/material/Card";
-import Typography from "@mui/material/Typography";
 import shuffle from "lodash/shuffle";
 import { useState } from "react";
 import { Flipped, Flipper } from "react-flip-toolkit";
@@ -10,22 +8,22 @@ import SwapVertIcon from '@mui/icons-material/SwapVert';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownward from "@mui/icons-material/ArrowDownward";
 
-const ATable = ({ props }) => {
-	const [data, setData] = useState(props);
-	const headers = Object.keys(props[0]);
+const ATable = ({ tracks }) => {
+	const [data, setData] = useState(tracks);
+	const headers = Object.keys(tracks[0]);
+	headers.shift();
 	headers[headers.length] = 'rank';
 	headers[headers.length] = <SwapVertIcon />
 
 	const shuffleList = () => {
-		console.log(data);
-		setData(shuffle(data));
+		setData(shuffle(tracks));
 	}
 
 	const arrowClickHandler = (event) => {
 		const ind = parseInt(event.currentTarget.getAttribute('ind'))
 		const direction = event.currentTarget.id;
 
-		let tempArr = [...data];
+		let tempArr = [...tracks];
 
 		if (direction === 'up' && ind > 0) {
 			const pulled = tempArr.splice(ind, 1)[0]
@@ -57,14 +55,11 @@ const ATable = ({ props }) => {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{data.map((row, i) =>
-							<Flipped flipId={row.id} key={i}>
+						{data.map((track, i) =>
+							<Flipped flipId={track.id} key={i}>
 								<TableRow>
-									<TableCell>{row.id}</TableCell>
-									<TableCell>{row.name}</TableCell>
-									<TableCell>{row.email}</TableCell>
-									<TableCell>{row.gender}</TableCell>
-									<TableCell>{row.status}</TableCell>
+									<TableCell>{track.name}</TableCell>
+									<TableCell>{track.album}</TableCell>
 									<TableCell>{i + 1}</TableCell>
 									<TableCell>
 										<ButtonGroup

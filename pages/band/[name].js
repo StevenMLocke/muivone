@@ -2,6 +2,8 @@ import getSpotifyArtist from "../../lib/getSpotifyArtist";
 import getSpotifyAlbumIds from "../../lib/getSpotifyAlbumIds";
 import spotAuth from "../../lib/spotAuth";
 import getSpotifyAlbums from "../../lib/getSpotifyAlbums";
+import ATable from "../../components/experiments/tableExp";
+import Contents from "../../components/layouts/Contents";
 
 export async function getServerSideProps({ query }) {
 	const client_id = process.env.SPOTIFY_CLIENT_ID;
@@ -24,11 +26,29 @@ export async function getServerSideProps({ query }) {
 }
 
 const Band = (props) => {
-	console.log(props)
+	const tracks = [];
+	const albumNames = [];
+
+	props.artistObj.albums.forEach((album) => {
+		console.log(album.name);
+		if (albumNames.indexOf(album.name) === -1) {
+			albumNames[albumNames.length] = album.name;
+		}
+		console.log(album.name);
+		album.tracks.items.forEach((track) => {
+			tracks[tracks.length] = {
+				id : track.id,
+				name: track.name,
+				album : album.name
+			}
+		})
+	})
+
+	//console.log(tracks);
 	return (
-		<>
-			check the console!
-		</>
+		<Contents>
+			<ATable tracks={tracks}></ATable>
+		</Contents>
 	)
 }
 
