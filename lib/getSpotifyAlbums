@@ -14,10 +14,27 @@ const getSpotifyAlbums = async (albumIdsQueryString, token) => {
 	}
 
 	const res = await fetch(url + params, options);
+
 	const albumsData = await res.json();
 
-	return albumsData.albums;
+	const reducedData = albumsData.albums.map((album) => {
+		const tracks = album.tracks.items.map((track) => {
+			return {				
+				id : track.id,
+				album : album.name,
+				name : track.name,
+				track_number : track.track_number
+			}
+		})
+		return {
+			id : album.id,
+			name : album.name,
+			tracks,
+		}
+	})
 
+	//return albumsData.albums;
+	return reducedData;
 }
 
 export default getSpotifyAlbums;

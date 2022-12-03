@@ -3,6 +3,7 @@ import getSpotifySearchArtistsList from "../lib/getSpotifySearchArtistsList";
 import { List, ListItem } from "@mui/material";
 import Link from "next/link";
 import Card from "@mui/material/Card";
+import Typography from "@mui/material/Typography";
 
 export const getServerSideProps = async (ctx) => {
 	const q = ctx.query.search;
@@ -19,12 +20,19 @@ export const getServerSideProps = async (ctx) => {
 }
 
 const search = ({ q, list }) => {
-	console.log(list);
 	return (
 		<Card raised>
 			<List>
 				{list.map((item) => {
-					return <ListItem><Link href={`/band/${encodeURI(item.name)}`} >{item.name}</Link></ListItem>
+					return (
+						<ListItem key={item.id}>
+							<Link href={`/band/${encodeURI(item.name)}`} >
+								<Typography>
+									{item.name}
+								</Typography>
+							</Link>
+						</ListItem>
+					)
 				})}
 			</List>
 		</Card>

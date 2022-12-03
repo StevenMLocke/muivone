@@ -2,8 +2,9 @@ import getSpotifyArtist from "../../lib/getSpotifyArtist";
 import getSpotifyAlbumIds from "../../lib/getSpotifyAlbumIds";
 import spotAuth from "../../lib/spotAuth";
 import getSpotifyAlbums from "../../lib/getSpotifyAlbums";
-import ATable from "../../components/experiments/tableExp";
+import TracksTable from "../../components/experiments/TracksTable";
 import Contents from "../../components/layouts/Contents";
+import { Promise } from "bluebird";
 
 export async function getServerSideProps({ query }) {
 	const client_id = process.env.SPOTIFY_CLIENT_ID;
@@ -12,42 +13,42 @@ export async function getServerSideProps({ query }) {
 	const token = await spotAuth(client_id, client_secret);
 	const artistObj = await getSpotifyArtist(query.name, token);
 	const albumsIds = await getSpotifyAlbumIds(artistObj.id, token);
-	const albumsQueryString = albumsIds.albumIdsArr.join(',');
 
-	artistObj.albums = await getSpotifyAlbums(albumsQueryString, token);
+	artistObj.albums = await Promise.map(albumsIds.albumIdsArr, async (arr) => {
+		return await getSpotifyAlbums(arr.join(","), token);
+	}, {concurrency: 2})
+
+	artistObj.albums = artistObj.albums.flat();
 
 	return {
 		props: {
-			query,
 			artistObj,
-			albumsQueryString
 		}
 	}
 }
 
 const Band = (props) => {
+	//console.log(props);
 	const tracks = [];
 	const albumNames = [];
 
 	props.artistObj.albums.forEach((album) => {
-		console.log(album.name);
 		if (albumNames.indexOf(album.name) === -1) {
 			albumNames[albumNames.length] = album.name;
+			album.tracks.forEach((track) => {
+				tracks[tracks.length] = {
+					id : track.id,
+					name: track.name,
+					album : album.name
+				}
+			})
 		}
-		console.log(album.name);
-		album.tracks.items.forEach((track) => {
-			tracks[tracks.length] = {
-				id : track.id,
-				name: track.name,
-				album : album.name
-			}
-		})
 	})
 
-	//console.log(tracks);
 	return (
 		<Contents>
-			<ATable tracks={tracks}></ATable>
+			Check Console...
+			<TracksTable tracks={tracks}></TracksTable>
 		</Contents>
 	)
 }

@@ -8,7 +8,7 @@ import SwapVertIcon from '@mui/icons-material/SwapVert';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownward from "@mui/icons-material/ArrowDownward";
 
-const ATable = ({ tracks }) => {
+const TracksTable = ({ tracks }) => {
 	const [data, setData] = useState(tracks);
 	const headers = Object.keys(tracks[0]);
 	headers.shift();
@@ -49,7 +49,9 @@ const ATable = ({ tracks }) => {
 						<TableRow>
 							{headers.map((header) => {
 								return (
-									<TableCell align="center">{header}</TableCell>
+									<TableCell key={header}
+										align="center"
+									>{header}</TableCell>
 								)
 							})}
 						</TableRow>
@@ -58,20 +60,40 @@ const ATable = ({ tracks }) => {
 						{data.map((track, i) =>
 							<Flipped flipId={track.id} key={i}>
 								<TableRow>
-									<TableCell>{track.name}</TableCell>
-									<TableCell>{track.album}</TableCell>
-									<TableCell>{i + 1}</TableCell>
-									<TableCell>
+									<TableCell 
+										key={i + track.name}
+									>
+										{track.name}
+									</TableCell>
+									<TableCell
+										key={i + track.album + track.name}
+									>
+										{track.album}
+									</TableCell>
+									<TableCell
+										key={i + 'index'}
+										align='center'
+									>
+										{i + 1}
+									</TableCell>
+									<TableCell
+										key={i + 'sort'}
+										align='center'
+									>
 										<ButtonGroup
 											variant="contained"
 											size="small"
 											color="primary"
 										>
-											<Button id='up' ind={i} onClick={arrowClickHandler}>
-												<ArrowUpwardIcon />
+											<Button 
+												id='up' 
+												ind={i} 
+												onClick={arrowClickHandler}
+											>
+												<ArrowUpwardIcon fontSize="small"/>
 											</Button>
 											<Button id='down' ind={i} onClick={arrowClickHandler}>
-												<ArrowDownward />
+												<ArrowDownward fontSize="small"/>
 											</Button>
 										</ButtonGroup>
 									</TableCell>
@@ -85,4 +107,4 @@ const ATable = ({ tracks }) => {
 	)
 }
 
-export default ATable;
+export default TracksTable;
