@@ -1,9 +1,6 @@
 import spotAuth from "../lib/spotAuth";
 import getSpotifySearchArtistsList from "../lib/getSpotifySearchArtistsList";
-import { List, ListItem } from "@mui/material";
-import Link from "next/link";
-import Card from "@mui/material/Card";
-import Typography from "@mui/material/Typography";
+import CardGrid from "../components/experiments/CardGrid";
 
 export const getServerSideProps = async (ctx) => {
 	const q = decodeURI(ctx.query.search);
@@ -21,21 +18,8 @@ export const getServerSideProps = async (ctx) => {
 
 const search = ({ q, list }) => {
 	return (
-		<Card raised>
-			<List>
-				{list.map((item) => {
-					return (
-						<ListItem key={item.id}>
-							<Link href={`/band/${encodeURI(item.name)}`} >
-								<Typography>
-									{item.name}
-								</Typography>
-							</Link>
-						</ListItem>
-					)
-				})}
-			</List>
-		</Card>
+		<CardGrid artists={list}>
+		</CardGrid>
 	);
 }
 

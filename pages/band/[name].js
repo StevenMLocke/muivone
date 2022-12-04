@@ -28,7 +28,6 @@ export async function getServerSideProps({ query }) {
 }
 
 const Band = (props) => {
-	//console.log(props);
 	const tracks = [];
 	const albumNames = [];
 
@@ -45,11 +44,9 @@ const Band = (props) => {
 		}
 	})
 
-	console.log(tracks);
 
 	return (
 		<Contents>
-			Check Console...
 			<TracksTable tracks={tracks}></TracksTable>
 		</Contents>
 	)
