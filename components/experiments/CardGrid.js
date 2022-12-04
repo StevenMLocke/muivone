@@ -24,8 +24,9 @@ const CardGrid = ({ artists }) => {
 									borderBottomRightRadius:'10%',
 									boxShadow:'1',
 									'&:hover':{
-										boxShadow:'15',
-										outline:'1px solid yellow'
+										boxShadow:'20',
+										outline:'1px solid yellow',
+										transform:'scale(1.07) rotate(0.003turn)'
 									}
 								}}
 							>
