@@ -15,7 +15,6 @@ const CardGrid = ({ artists }) => {
 					return (
 						<Grid2 xs={3} display="flex" justifyContent="center" alignItems="center" key={artist.id}>
 							<Card
-								elevation={5}
 								key={artist.id}
 								sx={{
 									width: '100%',
@@ -23,6 +22,11 @@ const CardGrid = ({ artists }) => {
 									borderTopLeftRadius:'30%',
 									borderBottomLeftRadius:'0',
 									borderBottomRightRadius:'10%',
+									boxShadow:'1',
+									'&:hover':{
+										boxShadow:'15',
+										outline:'1px solid yellow'
+									}
 								}}
 							>
 								<CardActionArea href={`/band/${encodeURI(artist.id)}`}>
