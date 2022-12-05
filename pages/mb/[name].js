@@ -1,4 +1,6 @@
 import getMusicBrainzSearchArtistList from "../../lib/getMusicBrainzSearchArtistList";
+import CardGrid from "../../components/experiments/CardGrid";
+import Contents from "../../components/layouts/Contents"
 
 export const getServerSideProps = async (ctx) => {
 	const artistIdList = await getMusicBrainzSearchArtistList(ctx.query.name)
@@ -14,9 +16,9 @@ const Name = (props) => {
 	console.log(props.q)
 	console.log(props.artistIdList);
 	return (
-		<div>
-			{props.q.name}
-		</div>
+		<Contents>
+			<CardGrid artists={props.artistIdList}></CardGrid>
+		</Contents>
 	);
 }
 
