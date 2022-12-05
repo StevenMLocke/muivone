@@ -1,12 +1,12 @@
 import shuffle from "lodash/shuffle";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Flipped, Flipper } from "react-flip-toolkit";
-import { Button, ButtonGroup, Paper, Stack, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TableRow, TableSortLabel } from "@mui/material";
-import { Box } from "@mui/system";
+import { Button, Paper, Stack, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TableRow, TableSortLabel } from "@mui/material";
 import SwapVertIcon from '@mui/icons-material/SwapVert';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownward from "@mui/icons-material/ArrowDownward";
-import { indexOf } from "lodash";
+import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
+import makeStyles from "@mui/material";
 
 const TracksTable = ({ tracks }) => {
 	const [data, setData] = useState(tracks);
@@ -41,62 +41,79 @@ const TracksTable = ({ tracks }) => {
 	};
 
 	return (
-		<Stack>
-			<Box sx={{ m: 'auto' }}>
+		<Grid2 xs display='flex' container justifyContent='center' spacing={2}
+			sx={{ px: 0 }}
+		>
+			<Grid2 xs={12} display='flex' justifyContent='center'
+				sx={{ px: 0 }}
+			>
 				<Button variant="contained" onClick={shuffleList}>Shuffle</Button>
-			</Box>
-			<TableContainer component={Paper} elevation={20}>
-				<Flipper flipKey={flip} >
-					<Table size="small">
-						<TableHead>
-							<TableRow>
-								{headers.map((header) => {
-									return (
-										<TableCell key={header}
-											align="center"
-										>{header}</TableCell>
-									)
-								})}
-							</TableRow>
-						</TableHead>
-						<TableBody>
-							{data.map((track, i) =>
-								<Flipped flipId={track.id} key={i}>
-									<TableRow sx={{willChange:'transform'}}>
-										<TableCell>{track.name}</TableCell>
-										<TableCell>{track.album}</TableCell>
-										<TableCell align='center'>{i + 1}</TableCell>
-										<TableCell align='center'>
-											<ButtonGroup
-												variant="contained"
-												size="small"
-												color="primary"
+			</Grid2>
+			<Grid2 display='flex' xs={12}
+				sx={{
+					px: 0,
+					justifyContent: 'center',
+					alignContent: 'center'
+				}}
+			>
+				<TableContainer component={Paper} elevation={2}
+					sx={{
+						display: 'flex',
+						justifyContent: 'center'
+					}}
+				>
+					<Flipper flipKey={flip} >
+						<Table size="small">
+							<TableHead>
+								<TableRow>
+									{headers.map((header) => {
+										return (
+											<TableCell key={header} align="center"
+												sx={{
+													wordBreak: 'normal'
+												}}
 											>
-												<Button
-													id='up'
-													ind={i}
-													onClick={arrowClickHandler}
+												{header}
+											</TableCell>
+										)
+									})}
+								</TableRow>
+							</TableHead>
+							<TableBody>
+								{data.map((track, i) =>
+									<Flipped flipId={track.id} key={i}>
+										<TableRow
+											sx={{
+												willChange: 'transform'
+											}}
+										>
+											<TableCell sx={{maxWidth:'100ch'}}>{track.name}</TableCell>
+											<TableCell sx={{maxWidth:'100ch'}}>{track.album}</TableCell>
+											<TableCell align='center'>{i + 1}</TableCell>
+											<TableCell align='center'
+												sx={{
+													px: 0
+												}}
+											>
+												<Stack
 												>
-													<ArrowUpwardIcon fontSize="small" />
-												</Button>
-												<Button
-													id='down'
-													ind={i}
-													onClick={arrowClickHandler}
-												>
-													<ArrowDownward fontSize="small" />
-												</Button>
-											</ButtonGroup>
-										</TableCell>
-									</TableRow>
-								</Flipped>
-							)}
-
-						</TableBody>
-					</Table >
-				</Flipper>
-			</TableContainer>
-		</Stack>
+													<Button size="small" id='up' ind={i} onClick={arrowClickHandler}>
+														<ArrowUpwardIcon fontSize="small" />
+													</Button>
+													<Button size="small" id='down' ind={i} onClick={arrowClickHandler}>
+														<ArrowDownward fontSize="small" />
+													</Button>
+												</Stack>
+											</TableCell>
+										</TableRow>
+									</Flipped>
+								)}
+							</TableBody>
+						</Table >
+					</Flipper>
+				</TableContainer>
+			</Grid2>
+		</Grid2>
 	)
 }
 
