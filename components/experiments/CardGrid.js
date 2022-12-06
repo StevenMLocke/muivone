@@ -7,10 +7,7 @@ const CardGrid = ({ artists, path }) => {
 	console.log(path);
 	return (
 		<Container>
-			<Divider
-				variant={'middle'}
-				sx={{ m: 1 }}
-			></Divider>
+			<Divider variant={'middle'} sx={{ m: 1 }} />
 			<Grid2 md display="flex" container columns={{xs:9, sm:12, md:15}} spacing={2} justifyContent="center" alignItems="center">
 				{artists.map((artist) => {
 					return (
@@ -18,7 +15,6 @@ const CardGrid = ({ artists, path }) => {
 							<Card
 								key={artist.id}
 								sx={{
-
 									width: '100%',
 									borderTopRightRadius:'3%',
 									borderTopLeftRadius:'30%',
@@ -60,7 +56,7 @@ const CardGrid = ({ artists, path }) => {
 					)
 				})}
 			</Grid2>
-			<Divider variant={'middle'}></Divider>
+			<Divider variant={'middle'} sx={{ m: 1 }} />
 		</Container>
 	);
 }
