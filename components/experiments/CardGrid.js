@@ -3,7 +3,8 @@ import { Container } from "@mui/system";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import { createTheme, responsiveFontSizes } from "@mui/system";
 
-const CardGrid = ({ artists }) => {
+const CardGrid = ({ artists, path }) => {
+	console.log(path);
 	return (
 		<Container>
 			<Divider
@@ -31,7 +32,7 @@ const CardGrid = ({ artists }) => {
 									}
 								}}
 							>
-								<CardActionArea href={`/band/${encodeURI(artist.id)}`}>
+								<CardActionArea href={`/${path}/${encodeURI(artist.id)}`}>
 									<CardMedia
 										component='img'
 										src={artist.images.length ? artist.images[1].url : "https://i.insider.com/602ee9ced3ad27001837f2ac?width=750&format=jpeg&auto=webp"}

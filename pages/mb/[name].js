@@ -17,7 +17,7 @@ const Name = (props) => {
 	console.log(props.artistIdList);
 	return (
 		<Contents>
-			<CardGrid artists={props.artistIdList}></CardGrid>
+			<CardGrid artists={props.artistIdList} path={'mb/list'}></CardGrid>
 		</Contents>
 	);
 }

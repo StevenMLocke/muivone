@@ -18,7 +18,7 @@ export const getServerSideProps = async (ctx) => {
 
 const search = ({ q, list }) => {
 	return (
-		<CardGrid artists={list}>
+		<CardGrid artists={list} path={'band'}>
 		</CardGrid>
 	);
 }
